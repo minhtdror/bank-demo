@@ -1,0 +1,14 @@
+%p#notice= notice
+%br
+.row
+  .col-12
+    = "Account: #{@transaction.account.name}"
+  .col-12
+    = "Amount: #{@transaction.amount}"
+  .col-12
+    = "Type: #{@transaction.transaction_type}"
+%br
+.row
+  .col-6
+  .col-6.text-right
+    = link_to 'Back', account_transactions_path, class: "btn btn-secondary"

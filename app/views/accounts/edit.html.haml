@@ -1,0 +1,9 @@
+%h1 Editing account
+
+= render 'form'
+.row
+  .col-6
+  .col-6.text-right
+    = link_to 'Show', @account, class: "btn btn-info"
+    \|
+    = link_to 'Back', accounts_path, class: "btn btn-secondary"

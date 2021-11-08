@@ -1,0 +1,41 @@
+!!!
+%html
+  %head
+    %title BankDemo
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css", rel: "stylesheet"}
+  %body
+    #wrapper
+      %aside#sidebar-wrapper
+        .sidebar-brand
+          %h2 Logo
+        %ul.sidebar-nav
+          %li.active
+            %a{href: accounts_path}
+              %i.fa.fa-home>
+              Accounts
+          %li
+            = link_to destroy_user_session_path, method: :delete do
+              %i.fa.fa-user>
+              Logout
+
+      #navbar-wrapper
+        %nav.navbar.navbar-inverse
+          .container-fluid
+            .navbar-header.d-flex
+              %a#sidebar-toggle.navbar-brand{href: "#"}
+                %i.fa.fa-bars
+              .user
+                =current_user.email
+
+      %section#content-wrapper
+        .flash
+          - flash.each do |name, msg|
+            %div= msg
+        .row
+          .col-lg-12
+            = yield

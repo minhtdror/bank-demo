@@ -1,0 +1,8 @@
+%h1 New transaction
+
+= render 'form'
+
+.row
+  .col-6
+  .col-6.text-right
+    = link_to 'Back', account_transactions_path(@account.id), class: "btn btn-secondary"

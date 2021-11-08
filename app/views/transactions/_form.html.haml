@@ -1,0 +1,24 @@
+= form_for @transaction, url: account_transactions_path(@account.id) do |f|
+  - if @transaction.errors.any?
+    #error_explanation
+      %ul
+        - @transaction.errors.full_messages.each do |message|
+          %li= message
+  .row
+    .col-lg-12
+      .form-group
+        = f.label :amount do
+          Amount
+          %span.text-danger *
+        = f.text_field :amount, class: 'form-control', placeholder: 'Amount', required: true
+  .row
+    .col-lg-12
+      .form-group
+        = f.label :transaction_type do
+          Bank
+          %span.text-danger *
+        = f.select(:transaction_type, options_for_select(Transaction.transaction_types.keys, f.object.transaction_type ), {include_blank: "Select"}, {class: 'form-control ', required: true })
+  .actions
+    .row
+      .col-12
+        = f.submit 'Save', class: "btn btn-primary"

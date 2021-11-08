@@ -1,0 +1,23 @@
+= form_for @account do |f|
+  - if @account.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@account.errors.count, "error")} prohibited this account from being saved:"
+      %ul
+        - @account.errors.full_messages.each do |message|
+          %li= message
+  .row
+    .col-lg-12
+      .form-group
+        = f.label :name do
+          Name
+          %span.text-danger *
+        = f.text_field :name, class: 'form-control', placeholder: 'Name', required: true
+  .row
+    .col-lg-12
+      .form-group
+        = f.label :bank do
+          Bank
+          %span.text-danger *
+        = f.select(:bank, options_for_select(Account.banks.keys, f.object.bank ), {include_blank: "Select"}, {class: 'form-control ', required: true })
+  .actions
+    = f.submit 'Save', class: 'btn btn-rounded btn-primary mr-2'

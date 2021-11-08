@@ -1,0 +1,27 @@
+%h1 Listing accounts
+
+.table-responsive
+  %table.table.text-nowrap.table-hover
+    %thead
+      %tr
+        %th{scope: "col"}
+          Name
+        %th{scope: "col"}
+          Balance
+        %th{scope: "col"}
+        %th{scope: "col"}
+
+    %tbody
+      - @accounts.each do |account|
+        %tr
+          %td{scope: "row"}
+            = link_to account.name, account
+          %td
+            = account.balance
+          %td= link_to 'Edit', edit_account_path(account)
+          %td= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+.row
+  .col-6
+    = link_to 'New Account', new_account_path, class: "btn btn-primary"

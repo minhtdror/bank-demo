@@ -1,0 +1,30 @@
+%h1=@account.name
+
+.table-responsive
+  %table.table.text-nowrap.table-hover
+    %thead
+      %tr
+        %th{scope: "col"}
+          Amount
+        %th{scope: "col"}
+          Type
+        %th{scope: "col"}
+          Date
+
+
+    %tbody
+      - @transactions.each do |transaction|
+        %tr
+          %td{scope: "row"}
+            = link_to transaction.transaction_type, account_transaction_path(@account.id, transaction)
+          %td
+            = transaction.amount
+          %td
+            = transaction.created_at
+
+%br
+.row
+  .col-6
+    = link_to 'New Transaction', new_account_transaction_path(@account), class: "btn btn-primary"
+  .col-6.text-right
+    = link_to 'Back', account_path(@account), class: "btn btn-secondary"
